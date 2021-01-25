@@ -1,5 +1,5 @@
 {
-  "name": "lesson-54-part-5-video",
+  "name": "avia-tickets",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,7 +8,7 @@
     "build": "webpack"
   },
   "keywords": [],
-  "author": "",
+  "author": "KaimNotark <kaimnotark@yandex.ru>",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.5.5",
@@ -32,5 +32,6 @@
     "axios": "^0.19.0",
     "date-fns": "^2.2.1",
     "materialize-css": "^1.0.0-rc.2"
-  }
+  },
+  "repository": "https://github.com/KaimNotark/avia-tickets.git"
 }

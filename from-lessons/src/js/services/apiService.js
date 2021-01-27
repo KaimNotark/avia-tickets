@@ -1,6 +1,11 @@
 import axios from 'axios';
-import config from '../config/apiConfig.js';
+import config from '../config/apiConfig';
 
+/**
+ * /countries - array of countries
+ * /cities - array of cities
+ * /prices/cheap - array
+ */
 class Api {
   constructor(config) {
     this.url = config.url;
@@ -43,7 +48,7 @@ class Api {
       return Promise.reject(err);
     }
   }
-};
+}
 
 const api = new Api(config);
 

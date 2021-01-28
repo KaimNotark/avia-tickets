@@ -69,7 +69,7 @@ class Locations {
   }
 
   serializeCities(cities) {
-    console.log('serializeCities', cities);
+    // console.log('serializeCities', cities);
     return cities.reduce((acc, city) => {
       // const country_name = this.getCountryNameByCode(city.country_code);
       const country_name = this.countries[city.country_code].name;
@@ -89,8 +89,10 @@ class Locations {
   // }
 
   async fetchTickets(params) {
+    console.log('fetchTickets--RUN');
     const response = await this.api.prices(params);
-    console.log(response);
+    console.log('fetchTickets--resp', response);
+    this.lastSearch = response.data;
   }
 }
 

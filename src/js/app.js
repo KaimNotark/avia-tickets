@@ -3,6 +3,7 @@ import './plugins';
 import locations from './store/location.js';
 import formUI from './views/form.js';
 import currencyUI from './views/currency.js';
+import ticketsUI from './views/tickets.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   initApp();
@@ -21,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   async function onFormSubmit() {
-    console.log('onFormSubmit--RUN');
+    // console.log('onFormSubmit--RUN');
 
     const origin = locations.getCityCodeByKey(formUI.originValue);
     const destination = locations.getCityCodeByKey(formUI.destinationValue);
@@ -29,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const return_date = formUI.returnDateValue;
     const currency = currencyUI.currencyValue;
 
-    console.log(origin, destination, depart_date, return_date);
+    // console.log('onFormSubmit', origin, destination, depart_date, return_date, currency);
 
     await locations.fetchTickets({
       origin,
@@ -40,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     console.log(locations.lastSearch);
+    ticketsUI.renderTickets(locations.lastSearch);
   }
 })
 

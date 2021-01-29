@@ -1,7 +1,8 @@
 import api from '../services/apiService.js';
+import { formatDate } from '../helpers/date.js';
 
 class Locations {
-  constructor(api) {
+  constructor(api, helpers) {
     this.api = api;
     this.countries = null;
     this.cities = null;
@@ -9,6 +10,7 @@ class Locations {
     this.shortCities = {};
     this.lastSearch = {};
     this.airlines = {};
+    this.formatDate = helpers.formatDate;
   }
   async init() {
     const response = await Promise.all([
@@ -20,20 +22,21 @@ class Locations {
     const [countries, cities, airlines] = response;
     this.countries = this.serializeCountries(countries);
     this.cities = this.serializeCities(cities);
-    this.shortCitiesList = this.createShortCitiesList(this.cities);
     this.airlines = this.serializeAirlines(airlines);
-
-    // console.log(this.cities);
+    this.shortCitiesList = this.createShortCitiesList(this.cities);
 
     return response;
   }
 
   getCityCodeByKey(key) {
-    // return this.cities[key].code;
     const city = Object.values(this.cities).find(
       item => item.full_name === key,
     );
     return city.code;
+  }
+
+  getCityNameByCode(code) {
+    return this.cities[code].name;
   }
 
   getAirlineNameByCode(code) {
@@ -69,9 +72,7 @@ class Locations {
   }
 
   serializeCities(cities) {
-    // console.log('serializeCities', cities);
     return cities.reduce((acc, city) => {
-      // const country_name = this.getCountryNameByCode(city.country_code);
       const country_name = this.countries[city.country_code].name;
       city.name = city.name || city.name_translations.en;
       const full_name = `${city.name}, ${country_name}`;
@@ -89,13 +90,25 @@ class Locations {
   // }
 
   async fetchTickets(params) {
-    console.log('fetchTickets--RUN');
     const response = await this.api.prices(params);
-    console.log('fetchTickets--resp', response);
-    this.lastSearch = response.data;
+    this.lastSearch = this.serializeTickets(response.data);
+  }
+
+  serializeTickets(tickets) {
+    return Object.values(tickets).map(ticket => {
+      return {
+        ...ticket,
+        origin_name: this.getCityNameByCode(ticket.origin),
+        destination_name: this.getCityNameByCode(ticket.destination),
+        airline_logo: this.getAirlineLogoByCode(ticket.airline),
+        airline_name: this.getAirlineNameByCode(ticket.airline),
+        departure_at: this.formatDate(ticket.departure_at, 'dd MMM yyyy hh:mm'),
+        return_at: this.formatDate(ticket.return_at, 'dd MMM yyyy hh:mm'),
+      }
+    })
   }
 }
 
-const locations = new Locations(api);
+const locations = new Locations(api, { formatDate });
 
 export default locations;

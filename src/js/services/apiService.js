@@ -34,7 +34,7 @@ class Api {
   }
   async prices(params) {
     try {
-      console.log('prices--RUN');
+      // console.log('prices--RUN');
       const response = await axios.get(`${this.url}/prices/cheap`, {
         params,
       });

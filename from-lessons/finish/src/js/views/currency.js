@@ -3,16 +3,17 @@ class CurrencyUI {
     this.currency = document.getElementById('currency');
     this.dictionary = {
       USD: '$',
-      EUR: '€'
-    }
+      EUR: '€',
+    };
   }
 
-  get currencyValue() {
+  get currecyValue() {
     return this.currency.value;
   }
 
   getCurrencySymbol() {
-    return this.dictionary[this.currencyValue];
+    console.log(this);
+    return this.dictionary[this.currecyValue];
   }
 }
 

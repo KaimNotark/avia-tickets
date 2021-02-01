@@ -67,6 +67,7 @@ class TicketsUI {
               <span class="ticket-transfers">Пересадок: ${ticket.transfers}</span>
               <span class="ticket-flight-number">Номер рейса: ${ticket.flight_number}</span>
             </div>
+            <a class="waves-effect waves-light btn-small green darken-1 add-favorite ml-auto">Add to favorites</a>
           </div>
         </div>
 `

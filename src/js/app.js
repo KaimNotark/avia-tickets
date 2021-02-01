@@ -9,8 +9,11 @@ import favoriteTicketsUI from './views/favorites.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   initApp();
+
+  // Elements
   const form = formUI.form;
   const favoriteButton = document.getElementById('favorite');
+  const listContainer = document.querySelector('.tickets-sections .container .row');
 
   // Events
   form.addEventListener('submit', (e) => {
@@ -19,10 +22,26 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   favoriteButton.addEventListener('click', showFavoritesTickets);
+  listContainer.addEventListener('click', addIntoFavoritesList);
 
   // Handlers
+  function addIntoFavoritesList({ target }) {
+
+    if (target.classList.contains('add-favorite')) {
+      const parent = target.closest('[id]');
+      const id = parent.dataset.ticketsId;
+    }
+
+    // console.log(this.id);
+    // const arrOfTickets = locations.lastSearch;
+    // console.log(arrOfTickets[this.id]);
+
+    // const selectedCard = locations.lastSearch.filter(e => { e.id === 2 });
+    // console.log("selectedCard", selectedCard);
+
+  }
+
   function showFavoritesTickets() {
-    console.log("allFavorites", allFavorites);
     favoriteTicketsUI.renderFavoriteTickets(allFavorites);
   };
 

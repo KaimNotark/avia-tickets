@@ -95,7 +95,7 @@ class Locations {
   }
 
   serializeTickets(tickets) {
-    return Object.values(tickets).map(ticket => {
+    return Object.values(tickets).map((ticket, index) => {
       return {
         ...ticket,
         origin_name: this.getCityNameByCode(ticket.origin),
@@ -104,6 +104,7 @@ class Locations {
         airline_name: this.getAirlineNameByCode(ticket.airline),
         departure_at: this.formatDate(ticket.departure_at, 'dd MMM yyyy hh:mm'),
         return_at: this.formatDate(ticket.return_at, 'dd MMM yyyy hh:mm'),
+        id: index,
       }
     })
   }

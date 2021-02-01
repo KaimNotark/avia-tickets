@@ -1,6 +1,7 @@
 const allFavorites =
   [
     {
+      id: 1,
       airline: "S7",
       airline_logo: "http://pics.avs.io/200/200/S7.png",
       airline_name: "S7 Airlines",
@@ -17,6 +18,7 @@ const allFavorites =
       transfers: 1,
     },
     {
+      id: 2,
       airline: "IO",
       airline_logo: "http://pics.avs.io/200/200/IO.png",
       airline_name: "IrAero",
@@ -33,6 +35,7 @@ const allFavorites =
       transfers: 1,
     },
     {
+      id: 3,
       airline: "DP",
       airline_logo: "http://pics.avs.io/200/200/DP.png",
       airline_name: "Победа",

@@ -1,12 +1,9 @@
-import currencyUI from './currency.js';
-
-class TicketsUI {
-  constructor(currency) {
+class FavoriteTicketsUI {
+  constructor() {
     this.container = document.querySelector('.tickets-sections .row');
-    this.getCurrencySymbol = currency.getCurrencySymbol.bind(currency);
   }
 
-  renderTickets(tickets) {
+  renderFavoriteTickets(tickets) {
     this.clearContainer();
 
     if (!tickets.length) {
@@ -15,10 +12,9 @@ class TicketsUI {
     }
 
     let fragment = '';
-    const currency = this.getCurrencySymbol();
 
     tickets.forEach(ticket => {
-      const template = TicketsUI.ticketTemplate(ticket, currency);
+      const template = FavoriteTicketsUI.ticketTemplate(ticket);
       fragment += template;
     });
 
@@ -30,18 +26,20 @@ class TicketsUI {
   }
 
   showEmptyMsg() {
-    const template = TicketsUI.emptyMsgTemplate();
+    const template = FavoriteTicketsUI.emptyMsgTemplate();
     this.container.insertAdjacentHTML('afterbegin', template);
   }
+
 
   static emptyMsgTemplate() {
     return `
       <div class="tickets-empty-res-msg">
-        По вашему запросу билетов не найдено.
+        У Вас нет билетов в "избранном".
       </div>
       `
   }
-  static ticketTemplate(ticket, currency) {
+
+  static ticketTemplate(ticket) {
     return `
         <div class="col s12 m6">
           <div class="card ticket-card">
@@ -61,18 +59,18 @@ class TicketsUI {
             </div>
             <div class="ticket-time-price d-flex align-items-center">
               <span class="ticket-time-departure">${ticket.departure_at}</span>
-              <span class="ticket-price ml-auto">${currency}${ticket.price}</span>
+              <span class="ticket-price ml-auto">${ticket.currency}${ticket.price}</span>
             </div>
             <div class="ticket-additional-info">
               <span class="ticket-transfers">Пересадок: ${ticket.transfers}</span>
               <span class="ticket-flight-number">Номер рейса: ${ticket.flight_number}</span>
             </div>
-            <a data-tickets-id="${ticket.id}" id="add-favorite" class="waves-effect waves-light btn-small green darken-1 add-favorite ml-auto">Add to favorites</a>
           </div>
         </div>
 `
   }
 }
 
-const ticketsUI = new TicketsUI(currencyUI);
-export default ticketsUI;
+const favoriteTicketsUI = new FavoriteTicketsUI();
+
+export default favoriteTicketsUI;

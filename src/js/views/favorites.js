@@ -10,9 +10,6 @@ class FavoriteTicketsUI {
       this.showEmptyMsg();
       return;
     }
-    // else {
-    //   this.showFavoriteMsg();
-    // }
 
     let fragment = '';
 
@@ -33,10 +30,6 @@ class FavoriteTicketsUI {
     this.container.insertAdjacentHTML('afterbegin', template);
   }
 
-  // showFavoriteMsg() {
-  //   const template = FavoriteTicketsUI.favoriteMsgTemplate();
-  //   this.container.insertAdjacentHTML('afterbegin', template);
-  // }
 
   static emptyMsgTemplate() {
     return `
@@ -45,14 +38,6 @@ class FavoriteTicketsUI {
       </div>
       `
   }
-
-  // static favoriteMsgTemplate() {
-  //   return `
-  //     <div class="tickets-empty-res-msg">
-  //       У Вас в избранном:
-  //     </div>
-  //     `
-  // }
 
   static ticketTemplate(ticket) {
     return `

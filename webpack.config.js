@@ -14,7 +14,7 @@ module.exports = {
   context: path.resolve(__dirname, 'src'),
   devServer: {
     publicPath: '/',
-    port: 9000,
+    port: 9001,
     contentBase: path.join(process.cwd(), 'dist'),
     host: 'localhost',
     historyApiFallback: true,

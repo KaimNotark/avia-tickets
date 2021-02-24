@@ -47,6 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
   async function initApp() {
     await locations.init();
     formUI.setAutocompleteData(locations.shortCitiesList);
+    console.log(locations.shortCitiesList);
   }
 
   async function onFormSubmit() {

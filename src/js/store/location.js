@@ -1,7 +1,7 @@
 import api from '../services/apiService.js';
 import { formatDate } from '../helpers/date.js';
 
-class Locations {
+export class Locations {
   constructor(api, helpers) {
     this.api = api;
     this.countries = null;
